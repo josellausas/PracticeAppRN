@@ -1,6 +1,5 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * Practice React Native App
  *
  * @format
  */
@@ -12,17 +11,7 @@ import {
 } from 'react-native-safe-area-context';
 import { AppContent } from './components/MainScreen';
 import { MovieDetail } from './components/MovieDetail';
-
-export interface RenderObject {
-  id: String;
-  title: String;
-  releaseYear: String;
-}
-
-export type RootStackParamList = {
-  Main: undefined;
-  MovieDetail: { movie: RenderObject };
-};
+import { RootStackParamList } from './navigation/types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

@@ -1,7 +1,8 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {useEffect, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { RenderObject, RootStackParamList } from '../App';
+import { RootStackParamList } from '../navigation/types';
+import { RenderObject } from '../models/Models';
 
 type MainScreenProps = NativeStackScreenProps<RootStackParamList, 'Main'>;
 
@@ -59,8 +60,6 @@ export const AppContent: React.FC<MainScreenProps> = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // padding: 30,
-    // top: 80
   },
   movieCard: {
     paddingBottom: 14,

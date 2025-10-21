@@ -1,8 +1,9 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import {useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { RootStackParamList } from '../navigation/types';
 import { RenderObject } from '../models/Models';
+import { useConfig } from '../hooks/useConfig';
 
 type MainScreenProps = NativeStackScreenProps<RootStackParamList, 'Main'>;
 
@@ -11,11 +12,14 @@ export const AppContent: React.FC<MainScreenProps> = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState(null);
+  const [config, _] = useConfig();
 
-  const getApi = async () => {
-    const API_URL = "https://reactnative.dev/movies.json";
+  const getApi = async (url: string) => {
+    console.log('url', url);
+    // TODO: Replace this with url
+    const testURL = 'https://reactnative.dev/movies.json';
     try {
-      const response = await fetch(API_URL);
+      const response = await fetch(testURL);
       const json = await response.json();
       setData(json.movies);
     } catch (error) {
@@ -27,9 +31,8 @@ export const AppContent: React.FC<MainScreenProps> = (props) => {
   };
 
   useEffect(() => {
-    getApi();
-    // TODO: Dispatch Loading of the data
-  }, []);
+    getApi(config.apiUrl);
+  }, [config.apiUrl]);
 
   const renderData = data || [];
 
